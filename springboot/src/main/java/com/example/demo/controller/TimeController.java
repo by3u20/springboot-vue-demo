@@ -7,20 +7,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.common.Result;
-import com.example.demo.entity.Arduino;
-import com.example.demo.entity.Time;
 import com.example.demo.entity.Time;
 import com.example.demo.mapper.TimeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/time")
@@ -79,23 +74,28 @@ public class TimeController {
                 break;
             }
         }
-        if(alarmSignal) {
-            //send email
-            SimpleMailMessage msg = new SimpleMailMessage();
-            msg.setTo("allenwin857@outlook.com");
-            msg.setSubject("Testing from Spring Boot");
-            msg.setText("Hello World \n Spring Boot Email\n Delete successfully");
-            javaMailSender.send(msg);
-            return "#1";//send an alarm
-        }
-        else {
-            SimpleMailMessage msg = new SimpleMailMessage();
-            msg.setTo("allenwin857@outlook.com");
-            msg.setSubject("Testing from Spring Boot");
-            msg.setText("Hello World \n Spring Boot Email\n Delete successfully");
-            javaMailSender.send(msg);
-            return "#0";// not send an alarm
-        }
+        Date time1 = DateUtil.date();
+        System.out.println(time1);
+//        if(alarmSignal) {
+//            //send email
+//            SimpleMailMessage msg = new SimpleMailMessage();
+//            msg.setTo("mrbinye@gmail.com");
+//            msg.setSubject("Testing from Spring Boot");
+//            msg.setText("Hello World \n Spring Boot Email\n Delete successfully");
+//            javaMailSender.send(msg);
+//            return "#1";//send an alarm
+//        }
+//        else {
+//            SimpleMailMessage msg = new SimpleMailMessage();
+//            msg.setTo("mrbinye@gmail.com");
+//            msg.setSubject("Testing from Spring Boot");
+//            msg.setText("Hello World \n Spring Boot Email\n Delete successfully");
+//            javaMailSender.send(msg);
+//            Date time2 = DateUtil.date();
+//            System.out.println(time2);
+//            return "#0";// not send an alarm
+//        }
+        return "#0";
     }
 
     @GetMapping

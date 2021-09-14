@@ -1,22 +1,23 @@
 <template>
-  <div style="width: 100%; height: 100vh; background-color: lightskyblue;overflow: hidden">
-      <div style="width: 400px; margin: 200px auto">
-        <div style="color: black; font-size: 30px; text-align: center; padding: 30px">Welcome to Register</div>
+  <div id="logo">
+      <div style="width: 400px; margin: 200px 150px">
+        <div style="color: white; font-size: 30px; text-align: center; padding: 30px">Welcome to Register</div>
         <el-form ref="form" :model="form" label-width="80px" :rules="rules">
-          <el-form-item label="Username:  " prop="username">
+          <el-form-item label="Username:  " prop="username" class="whiteitem">
             <el-input v-model="form.username" prefix-icon="el-icon-user-solid"></el-input>
           </el-form-item>
-          <el-form-item label="Email: " prop="email">
+          <el-form-item label="Email: " prop="email" class="whiteitem">
             <el-input v-model="form.email" prefix-icon="el-icon-message"></el-input>
           </el-form-item>
-          <el-form-item label="Password: " prop="password">
+          <el-form-item label="Password: " prop="password" class="whiteitem">
             <el-input v-model="form.password" prefix-icon="el-icon-lock" show-password></el-input>
           </el-form-item>
-          <el-form-item label="Confirm: " prop="confirm">
+          <el-form-item label="Confirm: " prop="confirm" class="whiteitem">
             <el-input v-model="form.confirm" prefix-icon="el-icon-lock" show-password></el-input>
           </el-form-item>
           <el-form-item >
-            <el-button style="width: 100%;" type="success" @click="register">Register</el-button>
+            <el-button style="width: 40%;" type="success" @click="back">Back</el-button>
+            <el-button style="width: 40%;" type="success" @click="register">Register</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -63,7 +64,9 @@ export default {
 
   methods:{
 
-
+    back(){
+      this.$router.push("/login")
+    },
     register(){
 
       this.$refs['form'].validate((valid) => {
@@ -96,6 +99,15 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+#logo{
+  background: url("../assets/background.jpg");
+  background-size: 100% 100%;
+  height: 100%;
+  position: fixed;
+  width: 100%
+}
+.whiteitem .el-form-item__label{
+  color: white;
+}
 </style>

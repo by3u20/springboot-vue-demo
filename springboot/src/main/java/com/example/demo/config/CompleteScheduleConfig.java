@@ -1,7 +1,6 @@
 package com.example.demo.config;
 
 import cn.hutool.core.date.DateUtil;
-import com.example.demo.mapper.CronMapper;
 import com.example.demo.mapper.EventMapper;
 import com.example.demo.mapper.TimeMapper;
 import org.springframework.context.annotation.Configuration;
@@ -10,20 +9,15 @@ import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Configuration
 @EnableScheduling
-@RestController
-@RequestMapping("/schedule")
 public class CompleteScheduleConfig implements SchedulingConfigurer {
 
 

@@ -125,13 +125,15 @@ public class EventController {
     }
 
     @GetMapping(value = "/{dateTime}/{switchSignal}/{accSignal}")
-    public String getTime(@PathVariable("dateTime") String strDateTime,
+    public String getDateFromArduino(@PathVariable("dateTime") String strDateTime,
                           @PathVariable("switchSignal")  String switchSignal,
                           @PathVariable("accSignal")  String accSignal) {
 //        System.out.println(dateTime);
         Date dateTime = DateUtil.parse(strDateTime);
         Event event = new Event();
         String strTime = DateUtil.format(dateTime, "yyyy-MM-dd   HH:mm:ss");
+        System.out.println(ip);
+        System.out.println(port);
 //        System.out.println(ip);
 //        System.out.println(accSignal);
 //        System.out.println(switchSignal);
@@ -155,12 +157,13 @@ public class EventController {
 //        System.out.print("Open compartment is:");
 //        System.out.println(OpenCompartment);
 
-        //get the timestamp from time Api
+//        //get the timestamp from time Api
         RestTemplate restTemplate = new RestTemplate();
         List<?> result = restTemplate.getForObject(uri,List.class);
         String morning = String.valueOf(Objects.requireNonNull(result).get(0))+":00";
         String noon = String.valueOf(result.get(1))+":00";
         String evening = String.valueOf(result.get(2))+":00";
+//        System.out.println(morning);
 
         //get the right medication time range
         Date leftMorning = DateUtil.parse(morning);
@@ -216,12 +219,9 @@ public class EventController {
                 eventLog = "Open incorrect compartment";
             }
         }
-        if(PickStatus.equals("No") && OpenStatus.equals("No")) {
-            returnSignal = "#2";
-        }
-        if (GlobalStatus !=null) {
-            returnSignal = (GlobalStatus.equals("Normal"))?"#0":"#1";
-        }
+
+        returnSignal = (GlobalStatus.equals("Normal"))?"#0":"#1";
+
 
 
 
@@ -246,6 +246,7 @@ public class EventController {
         }
 
 //        EventMapper.insert(event);
+//        return returnSignal;
         return returnSignal;
     }
 }
